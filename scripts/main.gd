@@ -12,7 +12,7 @@ const WHITE := Color("#f4f7ff")
 
 var ui_layer: CanvasLayer
 var ui_root: Control
-var board: Node3D
+var board
 var camera: Camera3D
 var current_screen := "home"
 var state: Dictionary = {}
@@ -260,16 +260,7 @@ func _build_setup() -> void:
 		_make_button(difficulty_row, "NORMAL", selected_difficulty == "normal", Callable(self, "_select_difficulty").bind("normal"), true)
 		_make_button(difficulty_row, "DIFÍCIL", selected_difficulty == "hard", Callable(self, "_select_difficulty").bind("hard"), true)
 
-	var note := _make_panel(root, 0.075, 0.67, 0.925, 0.78, Color("#102744"))
-	var note_box := note.get_child(0)
-	var note_text := Label.new()
-	note_text.text = "Cada jogador terá 4 peças. No modo local, todos jogam no mesmo dispositivo."
-	note_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	note_text.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	note_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	note_text.add_theme_font_size_override("font_size", 16)
-	note_text.add_theme_color_override("font_color", MUTED)
-	note_box.add_child(note_text)
+	_make_label(column, "Cada jogador tem quatro peças. No modo local, todos jogam no mesmo dispositivo.", 14, MUTED, true)
 
 	var lower_space := Control.new()
 	lower_space.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -306,7 +297,7 @@ func _build_game_ui() -> void:
 	top_panel.get_child(0).add_child(top_box)
 	var top_row := HBoxContainer.new()
 	top_box.add_child(top_row)
-	_make_button(top_row, "SAIR", false, Callable(self, "_build_home"), true)
+	_make_button(top_row, "SAIR", false, Callable(self, "_go_home"), true)
 	top_label = _make_label(top_row, "VEZ DE " + profile_name, 18, GOLD, true)
 	_make_label(top_box, "LUDO NEX  •  PARTIDA OFFLINE", 12, MUTED, true)
 
