@@ -1,0 +1,13 @@
+# Godot generated files
+.godot/
+.import/
+.export/
+
+# Build output and local signing material
+build/
+*.keystore
+*.jks
+
+# Editor / operating system files
+.DS_Store
+Thumbs.db
