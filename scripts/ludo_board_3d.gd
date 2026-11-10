@@ -135,7 +135,7 @@ func _build_track() -> void:
 			add_child(star)
 	for color_id in range(4):
 		var start := path_points[color_id * 13]
-		var lane_color := COLORS[color_id].darkened(0.08)
+		var lane_color: Color = COLORS[color_id].darkened(0.08)
 		for lane_index in range(5):
 			var t := 0.27 + float(lane_index) * 0.115
 			var point := start.lerp(Vector2.ZERO, t)
@@ -143,8 +143,8 @@ func _build_track() -> void:
 
 func _build_home_zones() -> void:
 	for color_id in range(4):
-		var center := BASE_CENTERS[color_id]
-		var color := COLORS[color_id]
+		var center: Vector2 = BASE_CENTERS[color_id]
+		var color: Color = COLORS[color_id]
 		_add_box(Vector3(4.15, 0.24, 4.15), Vector3(center.x, 0.18, center.y), _material(color.darkened(0.24), 0.26, 0.36))
 		_add_box(Vector3(3.82, 0.16, 3.82), Vector3(center.x, 0.34, center.y), _material(color, 0.18, 0.33))
 		_add_box(Vector3(3.28, 0.12, 3.28), Vector3(center.x, 0.46, center.y), _material(Color("#f4f7fb"), 0.12, 0.4))
@@ -262,7 +262,7 @@ func _make_token(color_id: int) -> Node3D:
 
 func _position_for_progress(color_id: int, progress: int, piece_index: int) -> Vector3:
 	if progress < 0:
-		var base := BASE_CENTERS[color_id] + SLOT_OFFSETS[piece_index]
+		var base: Vector2 = BASE_CENTERS[color_id] + SLOT_OFFSETS[piece_index]
 		return Vector3(base.x, 0.50, base.y)
 	if progress < 52:
 		var point := path_points[(color_id * 13 + progress) % 52]
