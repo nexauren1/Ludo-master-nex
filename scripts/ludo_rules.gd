@@ -23,7 +23,19 @@ static func track_points() -> Array[Vector2]:
 	return points
 
 static func new_game(player_count: int, vs_cpu: bool, difficulty: String) -> Dictionary:
-	var color_ids: Array[int] = [0, 2] if player_count == 2 else ([0, 1, 2] if player_count == 3 else [0, 1, 2, 3])
+	var color_ids: Array[int] = []
+	if player_count == 2:
+		color_ids.append(0)
+		color_ids.append(2)
+	elif player_count == 3:
+		color_ids.append(0)
+		color_ids.append(1)
+		color_ids.append(2)
+	else:
+		color_ids.append(0)
+		color_ids.append(1)
+		color_ids.append(2)
+		color_ids.append(3)
 	var players: Array[Dictionary] = []
 	for i in range(color_ids.size()):
 		var is_cpu := vs_cpu and i > 0
