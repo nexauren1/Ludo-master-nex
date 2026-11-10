@@ -216,7 +216,7 @@ func _set_dice_face(face: int) -> void:
 func _make_token(color_id: int) -> Node3D:
 	var root := Node3D.new()
 	root.name = "Token_" + str(color_id)
-	var color := COLORS[color_id]
+	var color: Color = COLORS[color_id]
 	var accent := Color("#f7df9b")
 	if token_skin == "NEON":
 		accent = Color("#8cf7ff")
