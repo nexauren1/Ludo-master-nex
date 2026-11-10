@@ -1,0 +1,24 @@
+; Engine configuration file.
+; Ludo Nex - initial Godot 4 project foundation.
+
+config_version=5
+
+[application]
+config/name="Ludo Nex"
+run/main_scene="res://scenes/main_menu.tscn"
+config/features=PackedStringArray("4.3", "GL Compatibility")
+config/description="Ludo Nex - modern 3D Ludo for Android"
+
+[display]
+window/size/viewport_width=1080
+window/size/viewport_height=1920
+window/size/window_width_override=540
+window/size/window_height_override=960
+window/stretch/mode="canvas_items"
+window/handheld/orientation=1
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
+environment/defaults/default_clear_color=Color(0.025, 0.04, 0.09, 1)
