@@ -272,7 +272,7 @@ func _position_for_progress(color_id: int, progress: int, piece_index: int) -> V
 		var t := 0.27 + float(progress - 52) * 0.115
 		var lane := start.lerp(Vector2.ZERO, t)
 		return Vector3(lane.x, 0.50, lane.y)
-	var finish_offset := SLOT_OFFSETS[piece_index] * 0.34
+	var finish_offset: Vector2 = SLOT_OFFSETS[piece_index] * 0.34
 	return Vector3(finish_offset.x, 0.88, finish_offset.y)
 
 func _add_box(size: Vector3, position_3d: Vector3, material: Material) -> MeshInstance3D:

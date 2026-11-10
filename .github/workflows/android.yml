@@ -78,8 +78,13 @@ jobs:
 
       - name: Validate project scripts
         run: |
-          Godot_v4.7.2-stable_linux.x86_64 --headless --editor --path . --import
-          Godot_v4.7.2-stable_linux.x86_64 --headless --path . --quit-after 3
+          set -o pipefail
+          Godot_v4.7.2-stable_linux.x86_64 --headless --editor --path . --import 2>&1 | tee build/import.log
+          Godot_v4.7.2-stable_linux.x86_64 --headless --path . --quit-after 3 2>&1 | tee build/smoke-test.log
+          if grep -E "SCRIPT ERROR|Parse Error|Compile Error|ERROR:" build/import.log build/smoke-test.log; then
+            echo "Godot reported script or project errors."
+            exit 1
+          fi
 
       - name: Export debug APK
         run: |

@@ -62,9 +62,9 @@ func _build_world() -> void:
 	camera.projection = Camera3D.PROJECTION_ORTHOGONAL
 	camera.size = 27.5
 	camera.position = Vector3(0, 21.5, 23.5)
+	add_child(camera)
 	camera.look_at(Vector3.ZERO, Vector3.UP)
 	camera.current = true
-	add_child(camera)
 
 	ui_layer = CanvasLayer.new()
 	ui_layer.layer = 10
