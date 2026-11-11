@@ -1,0 +1,16 @@
+# Flutter and Dart output
+.dart_tool/
+.packages
+.pub/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+flutter_scene_generated/*.fsceneb
+
+# Android signing files
+*.jks
+*.keystore
+
+# Desktop
+.DS_Store
+Thumbs.db

@@ -1,0 +1,83 @@
+name: Build Ludo Nex Flutter 3D Android
+
+on:
+  push:
+    branches:
+      - flutter-3d-rebuild
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ludo-nex-flutter-android
+  cancel-in-progress: true
+
+jobs:
+  android:
+    name: Generate GLB assets, test Dart and export APK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Flutter rebuild
+        uses: actions/checkout@v4
+        with:
+          ref: flutter-3d-rebuild
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.47.9"
+          channel: stable
+          cache: true
+
+      - name: Generate original 3D GLB assets
+        run: |
+          python3 tools/generate_assets.py
+          test -s assets/models/nex_board.glb
+          test -s assets/models/token_ruby.glb
+          test -s assets/models/token_cyan.glb
+          test -s assets/models/token_emerald.glb
+          test -s assets/models/token_solar.glb
+          test -s assets/models/dice.glb
+          ls -lh assets/models/
+
+      - name: Store generated GLB assets in the branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/models/*.glb
+          if ! git diff --cached --quiet; then
+            git commit -m "Generate original Ludo Nex 3D GLB models"
+            git push origin HEAD:flutter-3d-rebuild
+          fi
+
+      - name: Create Android host project
+        run: |
+          flutter create \
+            --project-name ludo_nex \
+            --org com.nexauren \
+            --platforms android \
+            --no-pub \
+            /tmp/ludo_nex_android
+          cp -a /tmp/ludo_nex_android/android ./android
+          python3 tools/enable_gpu.py
+
+      - name: Resolve Dart and Flutter packages
+        run: flutter pub get
+
+      - name: Analyze Dart source
+        run: flutter analyze --no-pub
+
+      - name: Test Ludo rules
+        run: flutter test --no-pub
+
+      - name: Build Android debug APK
+        run: flutter build apk --debug --no-pub
+
+      - name: Upload Flutter 3D APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Ludo-Nex-Flutter-3D-APK
+          path: build/app/outputs/flutter-apk/app-debug.apk
+          if-no-files-found: error
+          retention-days: 14
