@@ -71,13 +71,13 @@ jobs:
       - name: Test Ludo rules
         run: flutter test --no-pub
 
-      - name: Build Android debug APK
-        run: flutter build apk --debug --no-pub
+      - name: Build optimized Android ARM64 release APK
+        run: flutter build apk --release --target-platform android-arm64 --no-pub
 
-      - name: Upload Flutter 3D APK
+      - name: Upload Flutter 3D ARM64 release APK
         uses: actions/upload-artifact@v4
         with:
-          name: Ludo-Nex-Flutter-3D-APK
-          path: build/app/outputs/flutter-apk/app-debug.apk
+          name: Ludo-Nex-Flutter-3D-ARM64-Release
+          path: build/app/outputs/flutter-apk/app-release.apk
           if-no-files-found: error
           retention-days: 14
