@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_scene/scene.dart';
-import 'package:vector_math/vector_math_64.dart' as vm;
+import 'package:vector_math/vector_math.dart' as vm;
 
 import 'ludo_engine.dart';
 

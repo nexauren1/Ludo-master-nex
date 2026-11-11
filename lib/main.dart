@@ -196,7 +196,7 @@ class _Brand extends StatelessWidget {
             ),
             boxShadow: [
               BoxShadow(
-                color: Nex.gold.withOpacity(0.22),
+                color: Nex.gold.withValues(alpha: 0.22),
                 blurRadius: 20,
                 spreadRadius: 1,
               ),
@@ -237,7 +237,7 @@ class _Brand extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 8),
           decoration: BoxDecoration(
-            color: Nex.panel.withOpacity(0.82),
+            color: Nex.panel.withValues(alpha: 0.82),
             borderRadius: BorderRadius.circular(40),
             border: Border.all(color: Nex.stroke),
           ),
@@ -706,7 +706,7 @@ class _PlayerBar extends StatelessWidget {
               duration: const Duration(milliseconds: 220),
               padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
               decoration: BoxDecoration(
-                color: active ? color.withOpacity(0.16) : Nex.panel,
+                color: active ? color.withValues(alpha: 0.16) : Nex.panel,
                 borderRadius: BorderRadius.circular(13),
                 border: Border.all(
                   color: active ? color : Nex.stroke,
@@ -726,7 +726,7 @@ class _PlayerBar extends StatelessWidget {
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
-                              color: color.withOpacity(0.65),
+                              color: color.withValues(alpha: 0.65),
                               blurRadius: 8,
                             ),
                           ],
@@ -794,7 +794,7 @@ class _GameDock extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(11, 4, 11, 11),
       padding: const EdgeInsets.fromLTRB(15, 12, 15, 14),
       decoration: BoxDecoration(
-        color: Nex.panel.withOpacity(0.98),
+        color: Nex.panel.withValues(alpha: 0.98),
         borderRadius: BorderRadius.circular(22),
         border: Border.all(color: Nex.stroke),
         boxShadow: const [
@@ -817,7 +817,7 @@ class _GameDock extends StatelessWidget {
                   color: color,
                   shape: BoxShape.circle,
                   boxShadow: [
-                    BoxShadow(color: color.withOpacity(0.65), blurRadius: 8),
+                    BoxShadow(color: color.withValues(alpha: 0.65), blurRadius: 8),
                   ],
                 ),
               ),
@@ -955,7 +955,7 @@ class _ModeCard extends StatelessWidget {
               width: 47,
               height: 47,
               decoration: BoxDecoration(
-                color: selected ? Nex.gold.withOpacity(0.14) : Nex.panel2,
+                color: selected ? Nex.gold.withValues(alpha: 0.14) : Nex.panel2,
                 borderRadius: BorderRadius.circular(13),
               ),
               child: Icon(icon, color: Nex.gold, size: 24),
@@ -1025,7 +1025,7 @@ class _Choice extends StatelessWidget {
         height: compact ? 43 : 55,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: selected ? color.withOpacity(0.18) : Nex.panel,
+          color: selected ? color.withValues(alpha: 0.18) : Nex.panel,
           borderRadius: BorderRadius.circular(13),
           border: Border.all(
             color: selected ? color : Nex.stroke,
@@ -1075,7 +1075,7 @@ class _GoldButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(radius),
           boxShadow: [
             BoxShadow(
-              color: Nex.gold.withOpacity(onTap == null ? 0.04 : 0.22),
+              color: Nex.gold.withValues(alpha: onTap == null ? 0.04 : 0.22),
               blurRadius: compact ? 12 : 21,
               offset: const Offset(0, 7),
             ),
@@ -1135,7 +1135,7 @@ class _OutlineButton extends StatelessWidget {
         label: Text(label),
         style: OutlinedButton.styleFrom(
           foregroundColor: Nex.text,
-          backgroundColor: Nex.panel.withOpacity(0.72),
+          backgroundColor: Nex.panel.withValues(alpha: 0.72),
           side: const BorderSide(color: Nex.stroke),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14),

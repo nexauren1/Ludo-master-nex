@@ -6,3 +6,4 @@ linter:
     prefer_const_constructors: true
     prefer_final_locals: true
     use_key_in_widget_constructors: true
+    prefer_interpolation_to_compose_strings: false
